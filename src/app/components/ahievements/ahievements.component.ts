@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AchievementsApiService} from "../../shared/achievements-api.service";
+import {Account} from "../../shared/achievements.model";
 
 @Component({
   selector: 'app-ahievements',
@@ -8,9 +9,12 @@ import {AchievementsApiService} from "../../shared/achievements-api.service";
 })
 export class AhievementsComponent implements OnInit {
 
+  isAuthorized: boolean;
+  account: Account;
   achievementsApiService: AchievementsApiService;
 
   constructor(achievementsApiService: AchievementsApiService) {
+    this.isAuthorized = false;
     this.achievementsApiService = achievementsApiService;
   }
 
@@ -18,8 +22,10 @@ export class AhievementsComponent implements OnInit {
 
   }
 
-  onAutorized(apiKey: String){
-    this.achievementsApiService.autorize(apiKey).subscribe(res => console.log(res.name));
+  onAutorized(apiKey: string){
+    if(this.achievementsApiService.autorize(apiKey)){
+      this.isAuthorized = true;
+      console.log('arara');
+    }
   }
-
 }

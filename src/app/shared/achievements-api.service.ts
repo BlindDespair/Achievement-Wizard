@@ -11,11 +11,15 @@ export class AchievementsApiService {
 
   constructor(private http: Http) { }
 
-  autorize(apiKey: String): Observable<Account>{
-    return this.get(apiKey);
+  autorize(apiKey: string): boolean{
+    if(this.get(apiKey)) {
+      localStorage.setItem('api_key', apiKey);
+      return true;
+    }
+    return false;
   }
 
-  private get(apiKey: String):Observable<Account>{
+  private get(apiKey: string):Observable<Account>{
     return this.http.get(`https://api.guildwars2.com/v2/account?access_token=${apiKey}`)
       .map(res => res.json())
       .catch(this.handleError);

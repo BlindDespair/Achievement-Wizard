@@ -7,16 +7,16 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class SignInFormComponent implements OnInit {
 
-  @Output() authorizated: EventEmitter<String>;
+  @Output() authorizated: EventEmitter<string>;
 
   constructor() {
-    this.authorizated = new EventEmitter<String>();
+    this.authorizated = new EventEmitter<string>();
   }
 
   ngOnInit() {
   }
 
-  authorize(apiKey: String){
+  authorize(apiKey: string){
     if(apiKey){
       this.authorizated.emit(apiKey);
     }

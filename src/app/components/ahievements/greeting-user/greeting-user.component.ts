@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {Account} from "../../../shared/achievements.model";
 
 @Component({
   selector: 'app-greeting-user',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GreetingUserComponent implements OnInit {
 
-  constructor() { }
+  @Input() account: Account;
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
