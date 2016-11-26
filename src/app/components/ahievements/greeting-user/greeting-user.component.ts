@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Account} from "../../../shared/achievements.model";
 
 @Component({
@@ -9,11 +9,19 @@ import {Account} from "../../../shared/achievements.model";
 export class GreetingUserComponent implements OnInit {
 
   @Input() account: Account;
-  constructor() {
+  @Output() greeting: EventEmitter<any>;
+  @Output() logedout: EventEmitter<any>;
 
+  constructor() {
+    this.greeting = new EventEmitter();
+    this.logedout = new EventEmitter();
   }
 
   ngOnInit() {
+    this.greeting.emit();
   }
 
+  logout(){
+    this.logedout.emit();
+  }
 }

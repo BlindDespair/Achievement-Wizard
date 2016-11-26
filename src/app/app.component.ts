@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {AchievementsApiService} from "./shared/achievements-api.service";
-import {AhievementsComponent} from "./components/ahievements/ahievements.component";
 
 @Component({
   selector: 'app-root',
@@ -9,5 +7,5 @@ import {AhievementsComponent} from "./components/ahievements/ahievements.compone
 
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Achievement Wizard alpha v0.3';
 }

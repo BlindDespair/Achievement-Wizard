@@ -19,6 +19,14 @@ export class AchievementsApiService {
     return false;
   }
 
+  logout(){
+    localStorage.removeItem('api_key');
+  }
+
+  getAccount(apiKey: string):Observable<Account>{
+    return this.get(apiKey);
+  }
+
   private get(apiKey: string):Observable<Account>{
     return this.http.get(`https://api.guildwars2.com/v2/account?access_token=${apiKey}`)
       .map(res => res.json())

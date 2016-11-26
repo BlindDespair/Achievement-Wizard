@@ -19,13 +19,23 @@ export class AhievementsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if(localStorage.getItem('api_key')){
+      this.isAuthorized = true;
+    }
   }
 
   onAutorized(apiKey: string){
     if(this.achievementsApiService.autorize(apiKey)){
       this.isAuthorized = true;
-      console.log('arara');
     }
+  }
+
+  onLogout(){
+    this.achievementsApiService.logout();
+    this.isAuthorized = false;
+  }
+
+  onGreeting(){
+    this.achievementsApiService.getAccount(localStorage.getItem('api_key')).subscribe(res => this.account = res);
   }
 }
