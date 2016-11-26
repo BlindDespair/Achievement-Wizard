@@ -3,10 +3,10 @@
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon">API KEY:</div>
-        <input type="text" class="form-control" id="exampleInputAmount">
+        <input type="text" class="form-control" id="exampleInputAmount" (keyup.enter)="authorize(apiKeyInput.value)" #apiKeyInput>
       </div>
     </div>
-    <div><button class="btn btn-primary">Submit</button></div>
+    <div><button class="btn btn-primary" (click)="authorize(apiKeyInput.value)">Submit</button></div>
 
   </div>
 
