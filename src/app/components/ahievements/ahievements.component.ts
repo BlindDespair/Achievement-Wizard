@@ -12,6 +12,7 @@ export class AhievementsComponent implements OnInit {
   isAuthorized: boolean;
   account: Account;
   achievementsApiService: AchievementsApiService;
+  error: any;
 
   constructor(achievementsApiService: AchievementsApiService) {
     this.isAuthorized = false;
@@ -25,16 +26,21 @@ export class AhievementsComponent implements OnInit {
   }
 
   onAutorized(apiKey: string){
-    if(this.achievementsApiService.autorize(apiKey)){
-      this.isAuthorized = true;
-    }
+    this.error = undefined;
+    this.achievementsApiService.getAccount(apiKey).subscribe(
+      () => {},
+      err => {this.error = err; return console.log(this.error);},
+      () => {
+        this.isAuthorized = true;
+        localStorage.setItem('api_key', apiKey);
+        return console.log('done');
+      });
   }
 
-  onLogout(){
-    this.achievementsApiService.logout();
+  onLogout() {
+    localStorage.removeItem('api_key');
     this.isAuthorized = false;
   }
-
   onGreeting(){
     this.achievementsApiService.getAccount(localStorage.getItem('api_key')).subscribe(res => this.account = res);
   }

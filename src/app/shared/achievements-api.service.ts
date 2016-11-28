@@ -11,30 +11,17 @@ export class AchievementsApiService {
 
   constructor(private http: Http) { }
 
-  autorize(apiKey: string): boolean{
-    if(this.get(apiKey)) {
-      localStorage.setItem('api_key', apiKey);
-      return true;
-    }
-    return false;
-  }
-
-  logout(){
-    localStorage.removeItem('api_key');
-  }
-
   getAccount(apiKey: string):Observable<Account>{
     return this.get(apiKey);
   }
 
   private get(apiKey: string):Observable<Account>{
-    return this.http.get(`https://api.guildwars2.com/v2/account?access_token=${apiKey}`)
-      .map(res => res.json())
-      .catch(this.handleError);
+   return this.http.get(`https://api.guildwars2.com/v2/account?access_token=${apiKey}`)
+          .map(res => res.json())
+          .catch(this.handleError);
   }
 
   handleError(err: any){
-    console.log('Something went wrong: ', err);
     return Observable.throw(err.message || err)
   }
 }
