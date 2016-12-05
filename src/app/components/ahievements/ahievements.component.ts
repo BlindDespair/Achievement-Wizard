@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AchievementsApiService} from "../../shared/achievements-api.service";
-import {Account} from "../../shared/achievements.model";
+import {Account, CategoryGroup} from "../../shared/achievements.model";
 
 @Component({
   selector: 'app-ahievements',
@@ -13,6 +13,7 @@ export class AhievementsComponent implements OnInit {
   account: Account;
   achievementsApiService: AchievementsApiService;
   error: any;
+  categoryGroups: CategoryGroup[];
 
   constructor(achievementsApiService: AchievementsApiService) {
     this.isAuthorized = false;
@@ -37,11 +38,16 @@ export class AhievementsComponent implements OnInit {
       });
   }
 
-  onLogout() {
+  onLogout(){
     localStorage.removeItem('api_key');
     this.isAuthorized = false;
   }
+
   onGreeting(){
     this.achievementsApiService.getAccount(localStorage.getItem('api_key')).subscribe(res => this.account = res);
+  }
+
+  onLoadData(){
+    this.achievementsApiService.getAchievements().subscribe(res => this.categoryGroups = res);
   }
 }
