@@ -12,6 +12,9 @@ import { CategoryGroupComponent } from './components/ahievements/category-group/
 import { CategoryGroupItemComponent } from './components/ahievements/category-group/category-group-item/category-group-item.component';
 import { CategoryComponent } from './components/ahievements/category-group/category-group-item/category/category.component';
 import { CategoryItemComponent } from './components/ahievements/category-group/category-group-item/category/category-item/category-item.component';
+import { AchievementItemComponent } from './components/ahievements/achievement-list/achievement-item/achievement-item.component';
+import {AchievementListComponent} from "./components/ahievements/achievement-list/achievement-list.component";
+import {BusyModule} from "angular2-busy";
 
 @NgModule({
   declarations: [
@@ -22,12 +25,15 @@ import { CategoryItemComponent } from './components/ahievements/category-group/c
     CategoryGroupComponent,
     CategoryGroupItemComponent,
     CategoryComponent,
-    CategoryItemComponent
+    CategoryItemComponent,
+    AchievementListComponent,
+    AchievementItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    BusyModule
   ],
   providers: [AchievementsApiService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 <div *ngIf="categoryGroups">
   <ul class="list-unstyled">
-    <app-category-group-item *ngFor="let categoryGroup of categoryGroups" [categoryGroup]="categoryGroup"></app-category-group-item>
+    <app-category-group-item *ngFor="let categoryGroup of categoryGroups" [categoryGroup]="categoryGroup" (categoryOpened)="openCategory($event)"></app-category-group-item>
   </ul>
 </div>

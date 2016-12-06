@@ -1,3 +1,10 @@
 li{
   font-size: 1.2em;
+  list-style: none;
+  border: solid 1px #000;
+  padding-left: 40px;
+  cursor: pointer;
+}
+li:hover{
+  background: #b1bcce;
 }

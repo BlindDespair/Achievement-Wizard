@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {CategoryGroup} from "../../../../shared/achievements.model";
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {CategoryGroup, Category} from "../../../../shared/achievements.model";
 
 @Component({
   selector: 'app-category-group-item',
@@ -9,10 +9,12 @@ import {CategoryGroup} from "../../../../shared/achievements.model";
 export class CategoryGroupItemComponent implements OnInit {
 
   @Input() categoryGroup: CategoryGroup;
+  @Output() categoryOpened: EventEmitter<Category>;
   listShow: boolean;
 
   constructor() {
     this.listShow = false;
+    this.categoryOpened = new EventEmitter<Category>();
   }
 
   ngOnInit() {
@@ -20,5 +22,9 @@ export class CategoryGroupItemComponent implements OnInit {
 
   listToggle(){
     this.listShow = !this.listShow;
+  }
+
+  openCategory(category: Category){
+    this.categoryOpened.emit(category);
   }
 }

@@ -1,3 +1,11 @@
 <app-sign-in-form [error]="error" [style.display]="isAuthorized?'none':'inherit'" (authorizated)="onAutorized($event)"></app-sign-in-form>
-<app-greeting-user *ngIf="isAuthorized" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
-<app-category-group *ngIf="isAuthorized" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()"></app-category-group>
+<div [ngBusy]="{busy: [loadingAccount, loadingAchievementData], message: 'Loading...', backdrop: false, delay: 200, minDuration: 600}"></div>
+<div [style.display]="isAccountLoaded?'inherit':'none'">
+<app-greeting-user *ngIf="isAuthorized&&isAchievementDataLoaded" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
+  <div class="row">
+    <div class="col-md-5">
+      <app-category-group *ngIf="isAuthorized" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryOpened)="showAchievementsFromCategory($event)"></app-category-group>
+    </div>
+    <div class="col-md-7"><app-achievement-list *ngIf="isAuthorized&&currentlyOpenedCategory" [currentlyOpenedCategory]="currentlyOpenedCategory" [accountAchievements]="accountAchievements"></app-achievement-list></div>
+  </div>
+</div>

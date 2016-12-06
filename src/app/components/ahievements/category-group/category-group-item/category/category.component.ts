@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Category} from "../../../../../shared/achievements.model";
 
 @Component({
@@ -9,10 +9,16 @@ import {Category} from "../../../../../shared/achievements.model";
 export class CategoryComponent implements OnInit {
 
   @Input() categories: Category[];
+  @Output() categoryOpened: EventEmitter<Category>;
 
-  constructor() { }
+  constructor() {
+    this.categoryOpened = new EventEmitter<Category>();
+  }
 
   ngOnInit() {
   }
 
+  openCategory(category: Category){
+    this.categoryOpened.emit(category);
+  }
 }
