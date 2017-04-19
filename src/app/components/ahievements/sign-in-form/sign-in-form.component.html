@@ -1,12 +1,12 @@
-<form class="form-inline">
+<form class="form-inline" (submit)="authorize(apiKeyInput.value)">
   <div class="row flex-items-xs-center flex-items-xs-middle">
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon">API KEY:</div>
-        <input type="text" class="form-control" id="exampleInputAmount" (keyup.enter)="authorize(apiKeyInput.value)" #apiKeyInput/>
+        <input type="text" class="form-control" id="exampleInputAmount" #apiKeyInput/>
       </div>
     </div>
-    <div><button class="btn btn-primary" (click)="authorize(apiKeyInput.value)">Submit</button></div>
+    <div><button type="submit" class="btn btn-primary">Submit</button></div>
   </div>
   <div class="row flex-items-xs-center flex-items-xs-middle error" *ngIf="error"><span *ngIf="error.status === 403">Incorrect API KEY.</span></div>
 </form>

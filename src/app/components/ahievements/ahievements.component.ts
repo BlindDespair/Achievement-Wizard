@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AchievementsApiService} from "../../shared/achievements-api.service";
-import {Account, CategoryGroup, Category, AccountAchievement} from "../../shared/achievements.model";
-import {Subscription} from "rxjs";
+import {AchievementsApiService} from '../../shared/achievements-api.service';
+import {Account, CategoryGroup, Category, AccountAchievement} from '../../shared/achievements.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-ahievements',
@@ -30,16 +30,18 @@ export class AhievementsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('api_key')){
+    if (localStorage.getItem('api_key')) {
       this.isAuthorized = true;
     }
   }
 
-  onAutorized(apiKey: string){
+  onAutorized(apiKey: string) {
     this.error = undefined;
     this.achievementsApiService.getAccount(apiKey).subscribe(
       () => {},
-      err => {this.error = err; return console.log(this.error);},
+      err => {
+        this.error = err; return console.log(this.error);
+        },
       () => {
         this.isAuthorized = true;
         localStorage.setItem('api_key', apiKey);
@@ -47,37 +49,38 @@ export class AhievementsComponent implements OnInit {
       });
   }
 
-  onLogout(){
+  onLogout() {
     localStorage.removeItem('api_key');
     this.isAuthorized = false;
     this.isAchievementDataLoaded = false;
     this.isAccountLoaded = false;
   }
 
-  onGreeting(){
+  onGreeting() {
     this.loadingAccount = this.achievementsApiService.getAccount(localStorage.getItem('api_key')).subscribe(
       res => this.account = res,
-      ()=> {},
-      ()=> this.isAccountLoaded = true
+      () => {},
+      () => this.isAccountLoaded = true
     );
   }
 
-  onLoadData(){
+  onLoadData() {
     this.loadingAchievementData = this.achievementsApiService.getAchievements().subscribe(
       res => this.categoryGroups = res,
-      ()=>{},
-      ()=> {
+      () => {},
+      () => {
         this.currentlyOpenedCategory = this.categoryGroups[0].categories[0];
         this.achievementsApiService.getAccountAchievements(localStorage.getItem('api_key')).subscribe(
           res => this.accountAchievements = res,
-          ()=> {},
-          ()=> this.isAchievementDataLoaded = true
+          () => {},
+          () => this.isAchievementDataLoaded = true
         );
-        return console.log(this.currentlyOpenedCategory);}
+        return console.log(this.currentlyOpenedCategory);
+      }
     );
   }
 
-  showAchievementsFromCategory(category: Category){
+  showAchievementsFromCategory(category: Category) {
     this.currentlyOpenedCategory = category;
     console.log(this.currentlyOpenedCategory);
   }

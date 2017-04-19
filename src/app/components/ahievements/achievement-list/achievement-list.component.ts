@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Category, AccountAchievement} from "../../../shared/achievements.model";
+import {Category, AccountAchievement} from '../../../shared/achievements.model';
 
 @Component({
   selector: 'app-achievement-list',

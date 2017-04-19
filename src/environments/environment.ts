@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  gw2ApiHost: 'https://api.guildwars2.com/v2/',
+  gw2EfApiHost: 'https://api.gw2efficiency.com/'
 };

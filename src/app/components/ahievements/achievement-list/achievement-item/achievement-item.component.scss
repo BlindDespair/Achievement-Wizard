@@ -10,3 +10,18 @@ li{
     }
   }
 }
+.description{
+  font-size: 12px;
+  color: #333;
+  font-style: italic;
+}
+.progress-container{
+  height: 10px;
+  width: 100%;
+
+  background: #b2c3b3;
+  .progress{
+    height: 100%;
+    background: #35833a;
+  }
+}
