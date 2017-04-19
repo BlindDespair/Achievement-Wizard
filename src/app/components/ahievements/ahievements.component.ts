@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AchievementsApiService} from '../../shared/achievements-api.service';
 import {Account, CategoryGroup, Category, AccountAchievement} from '../../shared/achievements.model';
 import {Subscription} from 'rxjs';
@@ -10,59 +10,19 @@ import {Subscription} from 'rxjs';
 })
 export class AhievementsComponent implements OnInit {
 
-  isAuthorized: boolean;
+  @Input() isAuthorized: boolean;
   account: Account;
-  achievementsApiService: AchievementsApiService;
-  error: any;
   categoryGroups: CategoryGroup[];
   currentlyOpenedCategory: Category;
   accountAchievements: AccountAchievement[];
-  loadingAccount: Subscription;
   loadingAchievementData: Subscription;
-  isAccountLoaded: boolean;
   isAchievementDataLoaded: boolean;
 
-  constructor(achievementsApiService: AchievementsApiService) {
-    this.isAuthorized = false;
-    this.achievementsApiService = achievementsApiService;
+  constructor(private achievementsApiService: AchievementsApiService) {
     this.isAchievementDataLoaded = false;
-    this.isAccountLoaded = false;
   }
 
-  ngOnInit() {
-    if (localStorage.getItem('api_key')) {
-      this.isAuthorized = true;
-    }
-  }
-
-  onAutorized(apiKey: string) {
-    this.error = undefined;
-    this.achievementsApiService.getAccount(apiKey).subscribe(
-      () => {},
-      err => {
-        this.error = err; return console.log(this.error);
-        },
-      () => {
-        this.isAuthorized = true;
-        localStorage.setItem('api_key', apiKey);
-        return console.log('done');
-      });
-  }
-
-  onLogout() {
-    localStorage.removeItem('api_key');
-    this.isAuthorized = false;
-    this.isAchievementDataLoaded = false;
-    this.isAccountLoaded = false;
-  }
-
-  onGreeting() {
-    this.loadingAccount = this.achievementsApiService.getAccount(localStorage.getItem('api_key')).subscribe(
-      res => this.account = res,
-      () => {},
-      () => this.isAccountLoaded = true
-    );
-  }
+  ngOnInit() {}
 
   onLoadData() {
     this.loadingAchievementData = this.achievementsApiService.getAchievements().subscribe(

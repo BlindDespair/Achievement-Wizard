@@ -2,8 +2,8 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-sign-in-form',
-  templateUrl: 'sign-in-form.component.html',
-  styleUrls: ['sign-in-form.component.scss']
+  templateUrl: './sign-in-form.component.html',
+  styleUrls: ['./sign-in-form.component.scss']
 })
 export class SignInFormComponent implements OnInit {
 
@@ -17,8 +17,8 @@ export class SignInFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  authorize(apiKey: string){
-    if(apiKey){
+  authorize(apiKey: string) {
+    if (apiKey) {
       this.authorizated.emit(apiKey);
     }
   }

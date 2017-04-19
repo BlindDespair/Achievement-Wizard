@@ -1,7 +1,5 @@
-<app-sign-in-form [error]="error" [style.display]="isAuthorized?'none':'inherit'" (authorizated)="onAutorized($event)"></app-sign-in-form>
-<div [ngBusy]="{busy: [loadingAccount, loadingAchievementData], message: 'Loading...', backdrop: false, delay: 200, minDuration: 600}"></div>
-<div [style.display]="isAccountLoaded?'inherit':'none'">
-<app-greeting-user *ngIf="isAuthorized&&isAchievementDataLoaded" [account]="account" (greeting)="onGreeting()" (logedout)="onLogout()"></app-greeting-user>
+<div [ngBusy]="{busy: [loadingAchievementData], message: 'Loading...', backdrop: false, delay: 200, minDuration: 600}"></div>
+<div [style.display]="isAchievementDataLoaded?'inherit':'none'">
   <div class="row">
     <div class="col-md-5">
       <app-category-group *ngIf="isAuthorized" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryOpened)="showAchievementsFromCategory($event)"></app-category-group>
