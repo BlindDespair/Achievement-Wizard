@@ -1,14 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AchievementsApiService} from '../../shared/achievements-api.service';
 import {Account, CategoryGroup, Category, AccountAchievement} from '../../shared/achievements.model';
 import {Subscription} from 'rxjs';
+import {DataService} from '../../shared/data.service';
 
 @Component({
-  selector: 'app-ahievements',
-  templateUrl: './ahievements.component.html',
-  styleUrls: ['./ahievements.component.scss', './../../../../node_modules/angular2-busy/build/style/busy.css']
+  selector: 'app-achievements',
+  templateUrl: './achievements.component.html',
+  styleUrls: ['./achievements.component.scss', './../../../../node_modules/angular2-busy/build/style/busy.css']
 })
-export class AhievementsComponent implements OnInit {
+export class AchievementsComponent implements OnInit, OnDestroy {
 
   @Input() isAuthorized: boolean;
   account: Account;
@@ -17,12 +18,22 @@ export class AhievementsComponent implements OnInit {
   accountAchievements: AccountAchievement[];
   loadingAchievementData: Subscription;
   isAchievementDataLoaded: boolean;
+  dataServiceIsAuthorizedSubscription: Subscription;
 
-  constructor(private achievementsApiService: AchievementsApiService) {
+  constructor(private achievementsApiService: AchievementsApiService, private dataService: DataService) {
     this.isAchievementDataLoaded = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dataServiceIsAuthorizedSubscription = this.dataService.isAuthorized$
+      .subscribe(isAuthorized => {
+        this.isAuthorized = isAuthorized;
+        return(console.log(this.isAuthorized));
+      });
+  }
+  ngOnDestroy() {
+    this.dataServiceIsAuthorizedSubscription.unsubscribe();
+  }
 
   onLoadData() {
     this.loadingAchievementData = this.achievementsApiService.getAchievements().subscribe(

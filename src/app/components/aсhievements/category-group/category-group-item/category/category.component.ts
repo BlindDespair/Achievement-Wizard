@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {Category} from "../../../../../shared/achievements.model";
+import {Category} from '../../../../../shared/achievements.model';
 
 @Component({
   selector: 'app-category',
@@ -18,7 +18,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  openCategory(category: Category){
+  openCategory(category: Category) {
     this.categoryOpened.emit(category);
   }
 }

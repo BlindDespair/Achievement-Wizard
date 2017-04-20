@@ -1,0 +1,3 @@
+<ul *ngIf="currentlyOpenedCategory&&accountAchievements">
+  <app-achievement-item *ngFor="let achievement of sortedAchievements" [achievement]="achievement" [accountAchievements]="accountAchievements"></app-achievement-item>
+</ul>

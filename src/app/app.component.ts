@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AchievementsApiService} from './shared/achievements-api.service';
 import {Account} from './shared/achievements.model';
+import {DataService} from './shared/data.service';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +15,13 @@ export class AppComponent implements OnInit {
   isAuthorized: boolean;
   account: Account;
 
-  constructor(private  achievementsApiService: AchievementsApiService) {
+  constructor(private  achievementsApiService: AchievementsApiService, private dataService: DataService) {
     this.isAuthorized = false;
   }
   ngOnInit() {
     if (localStorage.getItem('api_key')) {
       this.isAuthorized = true;
+      this.dataService.setIsAuthorized(this.isAuthorized);
     }
   }
 
@@ -33,12 +35,14 @@ export class AppComponent implements OnInit {
       () => {
         this.isAuthorized = true;
         localStorage.setItem('api_key', apiKey);
+        this.dataService.setIsAuthorized(this.isAuthorized);
         return console.log('done');
       });
   }
   onLogout() {
     localStorage.removeItem('api_key');
     this.isAuthorized = false;
+    this.dataService.setIsAuthorized(this.isAuthorized);
   }
 
   onGreeting() {
