@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AchievementsApiService} from '../../shared/achievements-api.service';
+import {AchievementsApiService} from '../../services/api/achievements-api.service';
 import {Account, CategoryGroup, Category, AccountAchievement} from '../../shared/achievements.model';
 import {Subscription} from 'rxjs';
-import {DataService} from '../../shared/data.service';
+import {DataService} from '../../services/data/data.service';
 
 @Component({
   selector: 'app-achievements',

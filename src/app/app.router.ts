@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
-import {AchievementsComponent} from './components/aсhievements/achievements.component';
 
 export const appRoutes: Routes = [
-  { path: 'achievements', component: AchievementsComponent }
+  { path: 'achievements', loadChildren: './modules/achievements/achievements.module#AchievementsModule' },
+  { path: 'about', loadChildren: './modules/about/about.module#AboutModule' }
 ];

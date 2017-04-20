@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AchievementsApiService} from './shared/achievements-api.service';
+import {AchievementsApiService} from './services/api/achievements-api.service';
 import {Account} from './shared/achievements.model';
-import {DataService} from './shared/data.service';
+import {DataService} from './services/data/data.service';
 
 @Component({
   selector: 'app-root',

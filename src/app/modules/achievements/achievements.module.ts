@@ -9,10 +9,12 @@ import {CategoryItemComponent} from './category-group/category-group-item/catego
 import {AchievementItemComponent} from './achievement-list/achievement-item/achievement-item.component';
 import {CategoryGroupItemComponent} from './category-group/category-group-item/category-group-item.component';
 import {BusyModule} from 'angular2-busy';
-import {DataService} from '../../shared/data.service';
+import {RouterModule} from '@angular/router';
+import {achievementRoutes} from './achievements.routes';
 
 @NgModule({
   imports: [
+    RouterModule.forChild(achievementRoutes),
     CommonModule,
     BusyModule
   ],
@@ -27,10 +29,9 @@ import {DataService} from '../../shared/data.service';
     AchievementStatsComponent
   ],
   exports: [
-    AchievementsComponent
+    AchievementsComponent,
+    RouterModule
   ],
-  providers: [
-    DataService
-  ]
+  providers: []
 })
 export class AchievementsModule { }
