@@ -1,9 +1,25 @@
-<div [ngBusy]="{busy: [loadingAchievementData], message: 'Loading...', backdrop: false, delay: 200, minDuration: 600}"></div>
+<div
+  [ngBusy]="{busy: [loadingAchievementData], message: 'Loading...', backdrop: false, delay: 200, minDuration: 600}"></div>
 <div [style.display]="isAchievementDataLoaded?'inherit':'none'">
   <div class="row">
-    <div class="col-md-5">
-      <app-category-group *ngIf="isAuthorized" [categoryGroups]="categoryGroups" (loadCategoryGroupData)="onLoadData()" (categoryOpened)="showAchievementsFromCategory($event)"></app-category-group>
+    <div class="col-md-7 offset-5">
+      <app-achievements-search-form (onSearch)="onSearch($event)"></app-achievements-search-form>
     </div>
-    <div class="col-md-7"><app-achievement-list *ngIf="isAuthorized&&currentlyOpenedCategory" [currentlyOpenedCategory]="currentlyOpenedCategory" [accountAchievements]="accountAchievements"></app-achievement-list></div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <app-category-group *ngIf="isAuthorized" [categoryGroups]="categoryGroups"
+                          [currentlyOpenedCategory]="currentlyOpenedCategory" (loadCategoryGroupData)="onLoadData()"
+                          (categoryOpened)="showAchievementsFromCategory($event)"></app-category-group>
+    </div>
+    <div class="col-md-7">
+      <app-achievement-list *ngIf="isAuthorized&&currentlyOpenedCategory&&!isSearching"
+                            [currentlyOpenedCategory]="currentlyOpenedCategory"
+                            [achievements]="currentlyOpenedCategory.achievements"
+                            [accountAchievements]="accountAchievements"></app-achievement-list>
+      <app-achievements-search-results *ngIf="isAuthorized&&isSearching" [accountAchievements]="accountAchievements"
+                                       [categoryGroups]="categoryGroups"
+                                       [searching]="searchingObservable"></app-achievements-search-results>
+    </div>
   </div>
 </div>

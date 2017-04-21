@@ -1,2 +1,2 @@
-<li (click)="listToggle()">{{ categoryGroup.name }}</li>
-<app-category *ngIf="listShow" [categories]="categoryGroup.categories" (categoryOpened)="openCategory($event)"></app-category>
+<a class="list-group-item" [class.active-list-item]="listShow" (click)="listToggle()">{{ categoryGroup.name }}</a>
+<app-category *ngIf="listShow" [categories]="categoryGroup.categories" [currentlyOpenedCategory]="currentlyOpenedCategory" (categoryOpened)="openCategory($event)"></app-category>

@@ -11,6 +11,9 @@ import {CategoryGroupItemComponent} from './category-group/category-group-item/c
 import {BusyModule} from 'angular2-busy';
 import {RouterModule} from '@angular/router';
 import {achievementRoutes} from './achievements.routes';
+import {AchievementDetailsComponent} from './achievement-list/achievement-item/achievement-details/achievement-details.component';
+import {AchievementsSearchResultsComponent} from './achievements-search-results/achievements-search-results.component';
+import {AchievementsSearchFormComponent} from './achievements-search-form/achievements-search-form.component';
 
 @NgModule({
   imports: [
@@ -26,7 +29,10 @@ import {achievementRoutes} from './achievements.routes';
     CategoryItemComponent,
     AchievementListComponent,
     AchievementItemComponent,
-    AchievementStatsComponent
+    AchievementStatsComponent,
+    AchievementDetailsComponent,
+    AchievementsSearchFormComponent,
+    AchievementsSearchResultsComponent
   ],
   exports: [
     AchievementsComponent,

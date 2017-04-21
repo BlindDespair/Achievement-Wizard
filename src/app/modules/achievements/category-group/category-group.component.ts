@@ -11,6 +11,7 @@ export class CategoryGroupComponent implements OnInit {
   @Output() loadCategoryGroupData: EventEmitter<any>;
   @Output() categoryOpened: EventEmitter<Category>;
   @Input() categoryGroups: CategoryGroup[];
+  @Input() currentlyOpenedCategory: Category;
 
   constructor() {
     this.loadCategoryGroupData = new EventEmitter();

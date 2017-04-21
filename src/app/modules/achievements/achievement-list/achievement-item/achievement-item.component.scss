@@ -1,7 +1,7 @@
 li{
   line-height: 1.2em;
   list-style: none;
-  border: solid 1px #000000;
+  //border: solid 1px #000000;
   padding: 20px;
   background-size: 100% 20%;
   .right{
@@ -15,13 +15,23 @@ li{
   color: #333;
   font-style: italic;
 }
+.requirements{
+  font-size: 12px;
+}
 .progress-container{
   height: 10px;
   width: 100%;
-
   background: #b2c3b3;
   .progress{
     height: 100%;
     background: #35833a;
+  }
+}
+.toggle-details{
+  font-size: 14px;
+  text-align: right;
+  cursor: pointer;
+  span{
+    text-decoration: underline;
   }
 }

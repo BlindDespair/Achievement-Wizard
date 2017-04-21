@@ -14,12 +14,15 @@ export class AchievementItemComponent implements OnInit {
   accountAchievement: AccountAchievement;
   currentTier: Tier;
   accountAchievementCount: number;
+  toggledDetails: boolean;
 
-  constructor() {}
+  constructor() {
+    this.toggledDetails = false;
+  }
 
   ngOnInit() {
     Observable.from(this.accountAchievements)
-      .filter(res => res.id === this.achievement.id)
+      .filter(accountAchievement => accountAchievement.id === this.achievement.id)
       .subscribe(
         res => {
           this.accountAchievement = res;
@@ -32,10 +35,10 @@ export class AchievementItemComponent implements OnInit {
             this.accountAchievementCount = 0;
           }
           return Observable.from(this.achievement.tiers)
-            .filter(res => this.accountAchievementCount < res.count || this.accountAchievementCount >= res.count && res === this.achievement.tiers[this.achievement.tiers.length - 1])
+            .filter(tier => this.accountAchievementCount < tier.count || this.accountAchievementCount >= tier.count && tier === this.achievement.tiers[this.achievement.tiers.length - 1])
             .take(1)
             .subscribe(
-              res => this.currentTier = res,
+              tier => this.currentTier = tier,
               () => {},
               () => {
                 if (this.accountAchievementCount > this.currentTier.count) {
@@ -45,6 +48,9 @@ export class AchievementItemComponent implements OnInit {
               }
             );
         });
+  }
+  toggleDetails() {
+    this.toggledDetails = !this.toggledDetails;
   }
 
 }

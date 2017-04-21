@@ -9,6 +9,7 @@ import {CategoryGroup, Category} from '../../../../shared/achievements.model';
 export class CategoryGroupItemComponent implements OnInit {
 
   @Input() categoryGroup: CategoryGroup;
+  @Input() currentlyOpenedCategory: Category;
   @Output() categoryOpened: EventEmitter<Category>;
   listShow: boolean;
 

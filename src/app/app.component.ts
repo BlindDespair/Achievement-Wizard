@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
 
   onGreeting() {
     this.achievementsApiService.getAccount(localStorage.getItem('api_key')).subscribe(
-      res => this.account = res,
+      account => this.account = account,
       () => {},
       () => {}
     );

@@ -9,6 +9,7 @@ import {Category} from '../../../../../../shared/achievements.model';
 export class CategoryItemComponent implements OnInit {
 
   @Input() category: Category;
+  @Input() currentlyOpenedCategory: Category;
   @Output() categoryOpened: EventEmitter<Category>;
   constructor() {
     this.categoryOpened = new EventEmitter<Category>();

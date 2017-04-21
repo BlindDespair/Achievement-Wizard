@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+/*list group items are inside component and so bootsrap css doesn't work properly with it, this is just workaroud*/
+
+app-category-group-item:not(:first-child):not(:last-child) .list-group-item, app-category-group-item:first-child li.list-group-item, app-category-group-item:last-child li.list-group-item{
+  border-radius: 0;
+}
+app-category-group-item:first-child > .list-group-item {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+app-category-group-item:last-child > .list-group-item {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

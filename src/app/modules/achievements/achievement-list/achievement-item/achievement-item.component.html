@@ -1,12 +1,20 @@
-<li>
+<li class="card card-block">
   <div class="row">
     <div class="col-md-9">
       <h5>{{achievement.name}}</h5>
       <p class="description">{{achievement.description}}</p>
+      <p class="requirements">{{achievement.requirement}}</p>
     </div>
     <app-achievement-stats class="col-md-3" [achievement]="achievement" [accountAchievementCount]="accountAchievementCount" [currentTier]="currentTier"></app-achievement-stats>
     <div class="progress-container">
       <div class="progress" [style.width]="accountAchievementCount/achievement.tiers[achievement.tiers.length-1].count*100+'%'"></div>
     </div>
   </div>
+  <div class="row" *ngIf="achievement.tiers.length > 1">
+    <div class="col-md-5 offset-md-7">
+      <p class="toggle-details" (click)="toggleDetails()"><span>Show achievement details</span><i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </p>
+    </div>
+  </div>
+  <app-achievement-details *ngIf="toggledDetails" [achievement]="achievement" [accountAchievementCount]="accountAchievementCount" [currentTier]="currentTier"></app-achievement-details>
 </li>
