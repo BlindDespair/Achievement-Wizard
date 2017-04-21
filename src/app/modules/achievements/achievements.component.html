@@ -3,7 +3,7 @@
 <div [style.display]="isAchievementDataLoaded?'inherit':'none'">
   <div class="row">
     <div class="col-md-7 offset-5">
-      <app-achievements-search-form (onSearch)="onSearch($event)"></app-achievements-search-form>
+      <app-achievements-search-form *ngIf="isAuthorized" (onSearch)="onSearch($event)"></app-achievements-search-form>
     </div>
   </div>
   <div class="row">
