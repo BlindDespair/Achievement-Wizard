@@ -1,0 +1,23 @@
+<div class="row" *ngIf="achievement.tiers.length > 1">
+  <table class="table achievement-tiers">
+    <thead class="achievement-tiers-header">
+    <tr class="">
+      <th class="col-md-4" class="tier-completed"><p>Complete</p></th>
+      <th class="col-md-1" class="tier-number"><p>Tier</p></th>
+      <th class="col-md-3" class="tier-points"><p>Points</p></th>
+      <th class="col-md-4" class="tier-counts"><p>Objectives</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tier of achievement.tiers; let i = index">
+      <td class="tier-completed">
+        <i class="fa fa-check" aria-hidden="true" *ngIf="tier.count <= accountAchievementCount"></i>
+        <i class="fa fa-minus" aria-hidden="true" *ngIf="tier.count > accountAchievementCount"></i>
+      </td>
+      <td class="tier-number" width-10><p>{{i+1}}</p></td>
+      <td class="tier-points" width-20><p>{{tier.points}}</p></td>
+      <td class="tier-counts" width-34><p>{{tier.count}}</p></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

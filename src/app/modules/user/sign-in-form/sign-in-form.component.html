@@ -3,10 +3,9 @@
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon">API KEY:</div>
-        <input type="text" class="form-control" id="exampleInputAmount" #apiKeyInput/>
+        <input type="text" class="form-control" id="exampleInputAmount" data-toggle="popover" data-animation="false" data-container="body" data-trigger="manual" data-placement="bottom" data-content="Incorrect API KEY." #apiKeyInput/>
       </div>
     </div>
     <div><button type="submit" class="btn btn-primary">Submit</button></div>
   </div>
-  <div class="row flex-items-xs-center flex-items-xs-middle error" *ngIf="error"><span *ngIf="error.status === 403">Incorrect API KEY.</span></div>
 </form>

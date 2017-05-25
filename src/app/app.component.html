@@ -14,7 +14,7 @@
           <a class="nav-link" routerLink="/achievements">Achievements <span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <app-user (authorizated)="onAutorized($event)" (greeting)="onGreeting()" (logedout)="onLogout()" [isAuthorized]="isAuthorized" [account]="account"></app-user>
+      <app-user (authorized)="onAuthorized($event)" (greeting)="onGreeting()" (logedout)="onLogout()" [isAuthorized]="isAuthorized" [account]="account" [error]="error"></app-user>
     </div>
   </nav>
 </div>

@@ -7,15 +7,15 @@ import {Account} from '../../shared/achievements.model';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  error: any;
+  @Input() error: any;
   @Input() isAuthorized: boolean;
   @Input() account: Account;
-  @Output() authorizated: EventEmitter<string>;
+  @Output() authorized: EventEmitter<string>;
   @Output() greeting: EventEmitter<any>;
   @Output() logedout: EventEmitter<any>;
   constructor() {
     this.isAuthorized = false;
-    this.authorizated = new EventEmitter<string>();
+    this.authorized = new EventEmitter<string>();
     this.greeting = new EventEmitter();
     this.logedout = new EventEmitter();
   }
@@ -26,9 +26,9 @@ export class UserComponent implements OnInit {
     }
   }
 
-  onAutorized(apiKey: string) {
+  onAuthorized(apiKey: string) {
     if (apiKey) {
-      this.authorizated.emit(apiKey);
+      this.authorized.emit(apiKey);
     }
   }
   onLogout() {

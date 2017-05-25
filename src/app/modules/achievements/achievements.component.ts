@@ -1,9 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AchievementsApiService} from '../../services/api/achievements-api.service';
 import {Account, CategoryGroup, Category, AccountAchievement} from '../../shared/achievements.model';
 import {Subscription} from 'rxjs';
 import {DataService} from '../../services/data/data.service';
 import {Observable} from 'rxjs/Observable';
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 
 @Component({
   selector: 'app-achievements',
@@ -24,7 +25,9 @@ export class AchievementsComponent implements OnInit, OnDestroy {
   dataServiceIsAuthorizedSubscription: Subscription;
   searchingObservable: Observable<any>;
 
-  constructor(private achievementsApiService: AchievementsApiService, private dataService: DataService) {
+  constructor(private achievementsApiService: AchievementsApiService,
+              private dataService: DataService,
+              private slimLoadingBarService: SlimLoadingBarService) {
     this.isAchievementDataLoaded = false;
   }
 
@@ -40,6 +43,9 @@ export class AchievementsComponent implements OnInit, OnDestroy {
   }
 
   onLoadData() {
+    this.slimLoadingBarService.start(() => {
+      console.log('Loading complete');
+    });
     this.loadingAchievementData = this.achievementsApiService.getAchievements().subscribe(
       categoryGroups => this.categoryGroups = categoryGroups,
       () => {},
@@ -50,6 +56,8 @@ export class AchievementsComponent implements OnInit, OnDestroy {
           () => {},
           () => this.isAchievementDataLoaded = true
         );
+        this.slimLoadingBarService.stop();
+        this.slimLoadingBarService.complete();
         return console.log(this.currentlyOpenedCategory);
       }
     );

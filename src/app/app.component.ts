@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  onAutorized(apiKey: string) {
+  onAuthorized(apiKey: string) {
     this.error = undefined;
     this.achievementsApiService.getAccount(apiKey).subscribe(
       () => {},
